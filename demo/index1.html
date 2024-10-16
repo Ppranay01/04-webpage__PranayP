@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>The Interior Firm</title>
+    <style>
+        :root {
+            --primary-color: white;
+            --secondary-color: black;
+            --accent-color: #ea5976;
+            --text-color: #1C2F59;
+            --background-color: #f8f8f8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background-color: #eaeaea;
+            color: var(--secondary-color);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            height: 80px;
+            width: 80px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style-type: none;
+        }
+
+        nav ul li {
+            font-size: large;
+            position: relative;
+            margin-left: 4.5rem;
+        }
+
+        nav ul li a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+
+            color: var(--accent-color);
+        }
+
+        .dropdown-content {
+            border-radius: 10px;
+            display: none;
+            position: absolute;
+            background-color: #eaeaea;
+            min-width: 250px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: var(--secondary-color);
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            border-radius: 10px;
+            background-color: #dc5d81;
+            color: white;
+
+        }
+
+
+
+
+
+        nav ul li:hover .dropdown-content {
+            display: block;
+        }
+
+        .cta-button {
+            background-color: #dc5d81;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.3rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-bottom: 100px;
+        }
+
+        .head-button {
+            background-color: var(--text-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        /* .cta-button:hover {
+            background-color: var(--secondary-color);
+        } */
+
+        .hero {
+
+            background-image: url('assets/images/background.jpg');
+
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--primary-color);
+
+
+        }
+
+        .hero-content {
+            /* background-color: rgba(58, 58, 58, 0.7); */
+            padding: 2rem;
+            border-radius: 10px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .gallery {
+            padding: 2rem 0;
+        }
+
+        .gallery h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+        }
+
+        .gallery-grid {
+            display: flex;
+            height: 350px;
+            width: 1200px;
+
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            /* border: 2px solid aqua;  */
+        }
+
+        .gallery-item {
+            /* border: 2px solid gold; */
+            height: 350px;
+            width: 400px;
+        }
+
+        .col1 {
+            background-color: white;
+            height: 300px;
+            /* box-shadow: 7px 9px 20px 0px; */
+
+        }
+
+        .col1 h2 {
+            font-weight: 400;
+            font-size: 1.5rem;
+            text-align: left;
+            color: var(--secondary-color);
+            /* background-color: aqua; */
+        }
+
+        .col1 a {
+            position: absolute;
+            margin-top: 75px;
+            text-decoration: none;
+            /* align-items: flex-end; */
+            color: black;
+            /* transition: transform 0.3s ease; */
+            /* background-color: yellow; */
+
+        }
+
+        .col1 a:hover {
+            /* transform: scale(1.05); */
+            color: #dc5d81;
+        }
+
+        .gallery-item {
+            background-color: white;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 10px;
+        }
+
+        .gallery-item img {
+            display: flex;
+            position: relative;
+            left: 50px;
+            width: auto;
+            height: auto;
+            /* object-fit: cover; */
+            /* border: 2px solid green;  */
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item img:hover {
+            transform: scale(1.05);
+        }
+
+        .gallery-item h4 {
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .gallery-containers {
+            text-align: center;
+            padding: 10px;
+            margin: 10px;
+        }
+
+        .box-container {
+            padding-left: 300px;
+            padding-right: 250px;
+            padding-top: 50px;
+            padding-bottom: 50px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .box1 {
+            object-fit: contain;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 50px;
+            margin: 10px;
+            border: 1px solid black;
+            height: 200px;
+            width: 200px;
+            transition: background 0.3s ease;
+            /* Smooth transition for hover effect */
+        }
+
+        /* Apply hover effect to the entire box1 */
+        .box1:hover {
+            background: rgb(245, 172, 193);
+            background: linear-gradient(0deg, rgba(245, 172, 193, 1) 0%, rgba(255, 255, 255, 0.38) 80%);
+        }
+
+        /* Ensure the hover effect does not apply to the image directly */
+        .box1 img {
+            padding: 10px;
+        }
+
+
+
+        .slider-container {
+            margin: auto;
+            width: 100%;
+            max-width: 1200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .slider {
+            display: flex;
+            justify-content: center;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .slide {
+            flex: 0 0 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+        }
+
+        button {
+            margin: 0 5px;
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #666;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #dc5d81;
+        }
+
+        .nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 18px;
+            z-index: 10;
+        }
+
+        .prev {
+            left: 10px;
+        }
+
+        .next {
+            right: 10px;
+        }
+
+
+        .designs-container {
+            /* border: 2px solid gold; */
+            display: inline-flex;
+            flex-wrap: wrap;
+            justify-content: center;
+
+        }
+
+        .design1 {
+            padding: 10px;
+            margin: 10px;
+            border: 2px solid red;
+            height: 200px;
+            width: 300px;
+
+        }
+
+
+
+        .designs-container2{
+            background-color: rgb(224,236,251);
+            margin: 10px 200px 50px 200px;
+            /* border: 2px solid goldenrod; */
+            padding: 4rem 0;
+        }
+
+        .designs-container2 h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--secondary-color);
+        }
+
+        .design2-grid {
+            
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+            gap: 1.5rem;
+        }
+
+
+        .design2-image {
+            border-radius: 20px;
+            /* display: flex; */
+            padding: 5px;
+            margin: 5px;
+            /* border: 2px solid red; */
+            height: 200px;
+            width: 250px;
+
+
+        }
+
+
+        /* pop up form */
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+
+        .popup-content {
+            background-color: var(--background-color);
+            padding: 2rem;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 400px;
+            position: relative;
+        }
+
+        .popup-content a {
+            color: rgb(76, 175, 80);
+            text-decoration: none;
+        }
+
+
+        .popup h2 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: var(--secondary-color);
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 0.75rem;
+            background-color: #dc5d81;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: var(--accent-color);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #555;
+            cursor: pointer;
+        }
+
+
+        .wtsbtn {
+            position: fixed;
+            width: 100px;
+            height: 100px;
+            bottom: -10px;
+            right: -10px;
+            /* WhatsApp green */
+            color: #fff;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 50px;
+
+            z-index: 100;
+
+        }
+
+        .wtsbtn img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+        }
+
+        footer {
+            background-color: #eaeaea;
+            color: var(--secondary-color);
+            padding: 2rem 0;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .social-icons a {
+            color: var(--secondary-color);
+            font-size: 1.5rem;
+            margin-left: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: var(--accent-color);
+        }
+
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+            }
+
+            nav ul {
+                margin-top: 1rem;
+            }
+
+            nav ul li {
+                margin-left: 0;
+                margin-right: 1.5rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .social-icons {
+                margin-top: 1rem;
+            }
+        }
+    </style>
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header>
+        <div class="container header-content">
+            <img src="assets/images/logo.png" class="logo" alt="">
+            <nav>
+                <ul>
+                    <li>
+                        <a href="#">Design Ideas <i class="fa fa-chevron-down"></i></a>
+                        <div class="dropdown-content">
+                            <a href="#">Wardrobe Designs</a>
+                            <a href="#">Moduler Kitchen Designs</a>
+                            <a href="#">Living Room Designs</a>
+                            <a href="#">Master Bedroom Designs</a>
+                            <a href="#">Kids Room Designs</a>
+                            <a href="#">Kitchen Wall Tiles Designs</a>
+                            <a href="#">Kitchen False Ceiling Designs</a>
+                            <a href="#">Balcony Designs</a>
+                            <a href="#">TV Unit Designs</a>
+                            <a href="#">Bathroom Designs</a>
+                            <a href="#">Pooja Mandir Designs</a>
+                            <a href="#">Dining Room Designs</a>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="#">Cities <i class="fa fa-chevron-down"></i></a>
+                        <div class="dropdown-content">
+                            <a href="#">Mumbai</a>
+                            <a href="#">Pune</a>
+                            <a href="#">Thane</a>
+                            <a href="#">Nashik</a>
+                        </div>
+                    </li>
+
+                    <li>
+                        <a href="#">Guides <i class="fa fa-chevron-down"></i></a>
+                        <div class="dropdown-content">
+                            <a href="#">Modular Kitchen Guide</a>
+                            <a href="#">Wardrobe Design Guide</a>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="#">Kitchen Price Calculator</a>
+                        <!-- <div class="dropdown-content">
+                            <a href="#">Small Kitchen</a>
+                            <a href="#">Medium Kitchen</a>
+                            <a href="#">Large Kitchen</a>
+                            <a href="#">Custom Size</a>
+                        </div> -->
+                    </li>
+                    <li>
+                        <a href="#">More<i class="fa fa-chevron-down"></i></a>
+                        <div class="dropdown-content">
+                            <a href="#">Refer & Earn</a>
+
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+            <button class="head-button">Get Free Estimate</button>
+        </div>
+
+    </header>
+
+    <main>
+
+        <section class="hero">
+            <div class="hero-content">
+                <h1>The Interior Firm</h1>
+                <p>Your Space, Our Expertise</p>
+
+                <button class="cta-button" id="exploreDesignsBtn">Book Free Design</button>
+
+            </div>
+        </section>
+
+        <section class="web-info">
+            <div style="
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #f8f8f8;
+    padding: 10px;
+    margin: 10px;
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+    color: #333;
+    /* border-bottom: 1px solid #ddd; */
+">
+                <div style="display: flex; align-items: center;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                    </svg>
+                    <span style="margin-left: 5px;">550 Interior Projects</span>
+                </div>
+                <div style="display: flex; align-items: center;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                    <span style="margin-left: 5px;">50 Design Experts</span>
+                </div>
+                <div style="display: flex; align-items: center;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                    </svg>
+                    <span style="margin-left: 5px;">04 Cities</span>
+                </div>
+                <div style="display: flex; align-items: center;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                        <polyline points="2 17 12 22 22 17"></polyline>
+                        <polyline points="2 12 12 17 22 12"></polyline>
+                    </svg>
+                    <span style="margin-left: 5px;">1000+ Design Options</span>
+                       
+                </div>
+            </div>
+        </section>
+
+        <section class="gallery container">
+            <!-- <h2>Our Latest Projects</h2> -->
+            <div class="gallery-grid">
+
+                <div class="gallery-item">
+                    <!-- <img src="" alt="Modern Living Room"> -->
+                    <div class="col1">
+                        <h2>Complete Trunkey Service</h2>
+                        <p>With an emphasis on details, extraordinary designs and exceptional customer service, we bring
+                            your dreams to life.</p>
+                        <a href="#">KNOW MORE &rarr;</a>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="assets/images/wedesign.png" alt="Luxurious Bedroom">
+                    <h4>We Design</h4>
+                    <p>From completed homes to modular kitchens, and storage to decor, our top interior designers create
+                        spaces that match your vision.</p>
+                </div>
+                <div class="gallery-item">
+                    <img src="assets/images/weExecute.png" alt="Stylish Kitchen">
+                    <h4>We Execute</h4>
+                    <p>We follow a meticulous planning approach with detail-driven designs for interiors of your homes.
+                    </p>
+                </div>
+                <div class="gallery-item">
+                    <img src="assets/images/weManage.png" alt="Elegant Bathroom">
+                    <h4>We Manage</h4>
+                    <p>Our top interior designers spearhead quality assurance by extending support after the execution
+                        of home projects.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="gallery-containers">
+            <h2>Interior Design Services Under One Roof</h2>
+            <p>From ideation to execution, we offer functional design solutions for your home.</p>
+            <div class="box-container">
+                <div class="box1"> <img src="assets/images/modular-Kitchen.svg" alt=""> Modular Kitchen</div>
+                <div class="box1"> <img src="assets/images/wardrobes.svg" alt=""> Wardrobe</div>
+                <div class="box1"> <img src="assets/images/master-bedroom.svg" alt=""> Master Bedroom</div>
+                <div class="box1"> <img src="assets/images/tv-units.svg" alt=""> Tv Unit</div>
+                <div class="box1"> <img src="assets/images/living-room.svg" alt=""> Living Room</div>
+                <div class="box1"> <img src="assets/images/kitchen-false-ceiling.svg" alt=""> Kitchen False Ceiling
+                </div>
+                <div class="box1"> <img src="assets/images/bathroom.svg" alt=""> Bathroom</div>
+                <div class="box1"> <img src="assets/images/kids-room.svg" alt=""> Kids Room</div>
+                <div class="box1"> <img src="assets/images/kitchen-wall-tiles.svg" alt=""> Kitchen Wall Tiles</div>
+                <div class="box1"> <img src="assets/images/balcony.svg" alt=""> Balcony</div>
+                <div class="box1"> <img src="assets/images/pooja-mandir.svg" alt=""> Pooja Mandir</div>
+                <div class="box1"> <img src="assets/images/dining-room.svg" alt=""> Dining Room</div>
+
+            </div>
+
+            <div>
+                <button class="cta-button" id="exploreDesignsBtn">Book Free Consultation</button>
+            </div>
+        </section>
+
+        <section class="gallery-containers">
+            <h2>Design Ideas for Every Space</h2>
+            <p>Because every corner holds a unique design potential.</p>
+
+            <div class="slider-container">
+                <button class="nav-button prev" aria-label="Previous slide">&lt;</button>
+                <button class="nav-button next" aria-label="Next slide">&gt;</button>
+                <div class="slider">
+                    <div class="slide">
+                        <button>Wardrobe Designs</button>
+                        <button>Moduler Kitchen Designs</button>
+                        <button>Living Room Designs</button>
+                        <button>Master Bedroom Designs</button>
+                    </div>
+                    <div class="slide">
+                        <button>Kids Room Designs</button>
+                        <button>Kitchen Wall Tiles Designs</button>
+                        <button>Kitchen False Ceiling Designs</button>
+                        <button>Balcony Designs</button>
+                    </div>
+                    <div class="slide">
+                        <button>TV Unit Designs</button>
+                        <button>Bathroom Designs</button>
+                        <button>Pooja Mandir Designs</button>
+                        <button>Dining Room Designs</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="designs-container">
+                <div class="design1"></div>
+                <div class="design1"></div>
+                <div class="design1"></div>
+                <div class="design1"></div>
+                <div class="design1"></div>
+                <div class="design1"></div>
+                <div class="design1"></div>
+                <div class="design1"></div>
+            </div>
+
+            <button class="cta-button" id="exploreDesignsBtn">Explore More Designs</button>
+
+        </section>
+
+        <section class="designs-container2">
+            <h2>Discover Your Dream Home: Dive into Our Decor & Furniture Collection!</h2><br>
+            <div class="design2-grid">
+                <div><img src="assets/images/1.jpg" class="design2-image" alt=""></div>
+                <div><img src="assets/images/02.jpg" class="design2-image" alt=""></div>
+                <div><img src="assets/images/03.jpg" class="design2-image" alt=""></div>
+                <div><img src="assets/images/04.jpg" class="design2-image" alt=""></div>
+                <div><img src="assets/images/05.jpg" class="design2-image" alt=""></div>
+                <div><img src="assets/images/06.jpg" class="design2-image" alt=""></div>
+                <div><img src="assets/images/07.jpg" class="design2-image" alt=""></div>
+                <div><img src="assets/images/08.jpg" class="design2-image" alt=""></div>
+                <div><img src="assets/images/09.jpg" class="design2-image" alt=""></div>
+                <div><img src="" class="design2-image" alt=""></div>
+            </div>
+        </section>
+
+
+
+        <!-- <section class="gallery container">
+            <h2>Our Latest Projects</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1932&q=80" alt="Modern Living Room">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Luxurious Bedroom">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1556912167-f556f1f39faa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Stylish Kitchen">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1620626011761-996317b8d101?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1769&q=80" alt="Elegant Bathroom">
+                </div>
+            </div>
+        </section> -->
+    </main>
+
+    <!-- popupform -->
+    <div id="popupForm" class="popup">
+
+        <div class="popup-content">
+            <form id="consultationForm">
+
+                <button id="closePopup" class="close-btn">&times;</button>
+                <h2>Book Free Consultation</h2>
+                <div class="form-group">
+                    <input type="text" id="name" name="name" placeholder="Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" id="mobile" name="mobile" placeholder="Mobile Number" required>
+                </div>
+                <div class="form-group">
+                    <select id="city" name="city" required>
+                        <option value="" disabled selected>Choose City</option>
+                        <option value="mumbai">Mumbai</option>
+                        <option value="pune">Pune</option>
+                        <option value="thane">Thane</option>
+                        <option value="nashik">Nashik</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select id="interest" name="interest" required>
+                        <option value="" disabled selected>I'm Interested in interior for</option>
+                        <option value="living-room">Living Room</option>
+                        <option value="bedroom">Bedroom</option>
+                        <option value="kitchen">Kitchen</option>
+                        <option value="bathroom">Bathroom</option>
+                        <option value="whole-house">Whole House</option>
+                    </select>
+                </div>
+                <div class="checkbox-group">
+                    <!-- <input type="checkbox" id="whatsapp" name="whatsapp"> -->
+                    <label for="whatsapp">You can reach me on <a href="https://wa.me/message/TOLRPQXNLD4GG1"><i
+                                class="fa fa-whatsapp"></i> WhatsApp</a></label>
+                </div>
+                <button type="submit" class="submit-btn">Book Free Consultation</button>
+            </form>
+        </div>
+    </div>
+    <section class="wtsbtn">
+        <div><a href="https://wa.me/message/TOLRPQXNLD4GG1"><img src="./assets/images/whatsapp-logo.webp" alt=""></a>
+        </div>
+    </section>
+    <footer>
+        <div class="container footer-content">
+            <img src="assets/images/logo.png" class="logo" alt="">
+            <div class="contact-info">
+                <p>Email: info@elegantinteriors.com</p>
+                <p>Phone: (123) 456-7890</p>
+                <p>Address: 123 Design Street, Creativeville, ST 12345</p>
+            </div>
+            <div class="social-icons">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Show the popup form when the Explore Our Designs button is clicked
+        document.getElementById('exploreDesignsBtn').addEventListener('click', function () {
+            document.getElementById('popupForm').style.display = 'flex';
+        });
+
+        // Close the popup when the close button is clicked
+        document.getElementById('closePopup').addEventListener('click', function () {
+            document.getElementById('popupForm').style.display = 'none';
+        });
+
+        // Close the popup when clicking outside the popup content
+        document.getElementById('popupForm').addEventListener('click', function (e) {
+            if (e.target === this) {
+                this.style.display = 'none';
+            }
+        });
+
+        // Handle the form submission
+        document.getElementById('consultationForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            alert('Thank you for booking a consultation. We will contact you soon!');
+            document.getElementById('popupForm').style.display = 'none';
+        });
+    </script>
+
+    <script>
+        const slider = document.querySelector('.slider');
+        const slides = document.querySelectorAll('.slide');
+        const prevButton = document.querySelector('.prev');
+        const nextButton = document.querySelector('.next');
+        let currentIndex = 0;
+
+        function updateSlider() {
+            slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+
+        prevButton.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+            updateSlider();
+        });
+
+        nextButton.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % slides.length;
+            updateSlider();
+        });
+    </script>
+
+</body>
+
+</html>
